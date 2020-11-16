@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ThoughtController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +23,5 @@ Auth::routes(['register' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::apiResource('thoughts', 'ThoughtController');
+
+Route::apiResource('thoughts', ThoughtController::class);

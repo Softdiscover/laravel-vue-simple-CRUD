@@ -37,6 +37,13 @@
         methods:{
             newThought(){
                 //alert(this.description);
+
+                const params = {
+                    description: this.description
+                };
+
+                axios.post('/thoughts', params).then( (response) => console.log(response) );
+
                 let thought={
                     id:4,
                     description: this.description,

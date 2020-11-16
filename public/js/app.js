@@ -1959,6 +1959,12 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     newThought: function newThought() {
       //alert(this.description);
+      var params = {
+        description: this.description
+      };
+      axios.post('/thoughts', params).then(function (response) {
+        return console.log(response);
+      });
       var thought = {
         id: 4,
         description: this.description,
