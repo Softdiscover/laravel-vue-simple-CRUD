@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class ThoughtController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +20,8 @@ class ThoughtController extends Controller
     public function index()
     {
         //
+
+        return Thought::where('user_id', auth()->id())->get();
     }
 
     /**
@@ -25,18 +33,15 @@ class ThoughtController extends Controller
     public function store(Request $request)
     {
         //
+        $thought= new Thought();
+        $thought->description = $request->description;
+        $thought->user_id = auth()->id();
+        $thought->save();
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -48,6 +53,10 @@ class ThoughtController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $thought= Thought::find($id);
+        $thought->description = $request->description;
+        $thought->save();
+
     }
 
     /**
@@ -58,6 +67,7 @@ class ThoughtController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $thought= Thought::find($id);
+        $thought->delete();
     }
 }
