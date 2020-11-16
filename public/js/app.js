@@ -1912,9 +1912,128 @@ module.exports = {
 
 /***/ }),
 
-/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\babel-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ExampleComponent.vue?vue&type=script&lang=js&":
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\babel-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\FormComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/node_modules/babel-loader/lib??ref--4-0!C:/sfdc-projects/laravel/vue-simple-crud/node_modules/vue-loader/lib??vue-loader-options!C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/FormComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      description: ''
+    };
+  },
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+  methods: {
+    newThought: function newThought() {
+      //alert(this.description);
+      var thought = {
+        id: 4,
+        description: this.description,
+        created_at: '11/22/3333'
+      };
+      this.$emit('new', thought);
+      this.description = '';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\babel-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\MyThoughtComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/node_modules/babel-loader/lib??ref--4-0!C:/sfdc-projects/laravel/vue-simple-crud/node_modules/vue-loader/lib??vue-loader-options!C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/MyThoughtComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      thoughts: [{
+        'id': 1,
+        'description': 'lorem ipsum  asdlfj alsdkfj alsdjf laksjdf lasjd flkajsd fljkas dlfj',
+        'created_at': '17/07/2018'
+      }, {
+        'id': 2,
+        'description': 'lorem ipsum2  asdlfj alsdkfj alsdjf laksjdf lasjd flkajsd fljkas dlfj',
+        'created_at': '17/07/2020'
+      }]
+    };
+  },
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+  methods: {
+    addThought: function addThought(thought) {
+      this.thoughts.push(thought);
+    },
+    deleteThought: function deleteThought(index) {
+      this.thoughts.splice(index, 1);
+    },
+    updateThought: function updateThought(index, thought) {
+      this.thoughts[index] = thought;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\babel-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ThoughtComponent.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** C:/sfdc-projects/laravel/vue-simple-crud/node_modules/babel-loader/lib??ref--4-0!C:/sfdc-projects/laravel/vue-simple-crud/node_modules/vue-loader/lib??vue-loader-options!C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/node_modules/babel-loader/lib??ref--4-0!C:/sfdc-projects/laravel/vue-simple-crud/node_modules/vue-loader/lib??vue-loader-options!C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/ThoughtComponent.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1937,9 +2056,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['thought'],
+  data: function data() {
+    return {
+      editMode: false
+    };
+  },
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  methods: {
+    onClickDelete: function onClickDelete() {
+      this.$emit('delete');
+    },
+    onClickEdit: function onClickEdit() {
+      this.editMode = true;
+      this.$emit('edit');
+    },
+    onClickUpdate: function onClickUpdate() {
+      this.editMode = false;
+      this.$emit('update', this.thought);
+    }
   }
 });
 
@@ -38135,9 +38290,149 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\loaders\\templateLoader.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ExampleComponent.vue?vue&type=template&id=7a292e12&":
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\loaders\\templateLoader.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\FormComponent.vue?vue&type=template&id=5a1cd505&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/sfdc-projects/laravel/vue-simple-crud/node_modules/vue-loader/lib??vue-loader-options!C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/FormComponent.vue?vue&type=template&id=5a1cd505& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-header" }, [
+      _vm._v("En que estas pensando")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c(
+        "form",
+        {
+          attrs: { action: "" },
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.newThought()
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "thought" } }, [
+              _vm._v("Ahora estoy pensando en: ")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.description,
+                  expression: "description"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", name: "thought" },
+              domProps: { value: _vm.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.description = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [
+                _vm._v(
+                  "\n                           Enviar Pensamiento\n                       "
+                )
+              ]
+            )
+          ])
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\loaders\\templateLoader.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\MyThoughtComponent.vue?vue&type=template&id=1d479d74&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/sfdc-projects/laravel/vue-simple-crud/node_modules/vue-loader/lib??vue-loader-options!C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/MyThoughtComponent.vue?vue&type=template&id=1d479d74& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c(
+      "div",
+      { staticClass: "col-md-8" },
+      [
+        _c("form-component", { on: { new: _vm.addThought } }),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _vm._l(_vm.thoughts, function(thought, index) {
+          return _c("thought-component", {
+            key: thought.id,
+            attrs: { thought: thought },
+            on: {
+              update: function($event) {
+                var i = arguments.length,
+                  argsArray = Array(i)
+                while (i--) argsArray[i] = arguments[i]
+                return _vm.updateThought.apply(
+                  void 0,
+                  [index].concat(argsArray)
+                )
+              },
+              delete: function($event) {
+                return _vm.deleteThought(index)
+              }
+            }
+          })
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\loaders\\templateLoader.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ThoughtComponent.vue?vue&type=template&id=b30af6b0&":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** C:/sfdc-projects/laravel/vue-simple-crud/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/sfdc-projects/laravel/vue-simple-crud/node_modules/vue-loader/lib??vue-loader-options!C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/ExampleComponent.vue?vue&type=template&id=7a292e12& ***!
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/sfdc-projects/laravel/vue-simple-crud/node_modules/vue-loader/lib??vue-loader-options!C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/ThoughtComponent.vue?vue&type=template&id=b30af6b0& ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -38150,32 +38445,86 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
+  return _c("div", { staticClass: "card mt-2" }, [
+    _c("div", { staticClass: "card-header" }, [
+      _vm._v("'Publicado en " + _vm._s(_vm.thought.created_at) + " ")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _vm.editMode
+        ? _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.thought.description,
+                expression: "thought.description"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "", id: "" },
+            domProps: { value: _vm.thought.description },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.thought, "description", $event.target.value)
+              }
+            }
+          })
+        : _c("p", [
+            _vm._v(
+              "\n               " +
+                _vm._s(_vm.thought.description) +
+                "\n               "
+            )
           ])
-        ])
-      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-footer" }, [
+      _vm.editMode
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              on: {
+                click: function($event) {
+                  return _vm.onClickUpdate()
+                }
+              }
+            },
+            [_vm._v("\n                   Guardar Cambios\n               ")]
+          )
+        : _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              on: {
+                click: function($event) {
+                  return _vm.onClickEdit()
+                }
+              }
+            },
+            [_vm._v("\n                   Editar\n               ")]
+          ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          on: {
+            click: function($event) {
+              return _vm.onClickDelete()
+            }
+          }
+        },
+        [_vm._v("\n                   Eliminar\n               ")]
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -50369,7 +50718,9 @@ window.Vue = __webpack_require__(/*! vue */ "C:\\sfdc-projects\\laravel\\vue-sim
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ExampleComponent.vue")["default"]);
+Vue.component('my-thought-component', __webpack_require__(/*! ./components/MyThoughtComponent.vue */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\MyThoughtComponent.vue")["default"]);
+Vue.component('thought-component', __webpack_require__(/*! ./components/ThoughtComponent.vue */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ThoughtComponent.vue")["default"]);
+Vue.component('form-component', __webpack_require__(/*! ./components/FormComponent.vue */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\FormComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -50427,17 +50778,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ExampleComponent.vue":
-/*!*********************************************************************************************!*\
-  !*** C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/ExampleComponent.vue ***!
-  \*********************************************************************************************/
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\FormComponent.vue":
+/*!******************************************************************************************!*\
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/FormComponent.vue ***!
+  \******************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_7a292e12___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=7a292e12& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ExampleComponent.vue?vue&type=template&id=7a292e12&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ExampleComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _FormComponent_vue_vue_type_template_id_5a1cd505___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormComponent.vue?vue&type=template&id=5a1cd505& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\FormComponent.vue?vue&type=template&id=5a1cd505&");
+/* harmony import */ var _FormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormComponent.vue?vue&type=script&lang=js& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\FormComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\runtime\\componentNormalizer.js");
 
 
@@ -50447,9 +50798,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExampleComponent_vue_vue_type_template_id_7a292e12___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ExampleComponent_vue_vue_type_template_id_7a292e12___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _FormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormComponent_vue_vue_type_template_id_5a1cd505___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FormComponent_vue_vue_type_template_id_5a1cd505___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -50459,38 +50810,176 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/ExampleComponent.vue"
+component.options.__file = "C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/FormComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ExampleComponent.vue?vue&type=script&lang=js&":
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\FormComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************!*\
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/FormComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./FormComponent.vue?vue&type=script&lang=js& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\babel-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\FormComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\FormComponent.vue?vue&type=template&id=5a1cd505&":
+/*!*************************************************************************************************************************!*\
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/FormComponent.vue?vue&type=template&id=5a1cd505& ***!
+  \*************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormComponent_vue_vue_type_template_id_5a1cd505___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FormComponent.vue?vue&type=template&id=5a1cd505& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\loaders\\templateLoader.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\FormComponent.vue?vue&type=template&id=5a1cd505&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormComponent_vue_vue_type_template_id_5a1cd505___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormComponent_vue_vue_type_template_id_5a1cd505___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\MyThoughtComponent.vue":
+/*!***********************************************************************************************!*\
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/MyThoughtComponent.vue ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MyThoughtComponent_vue_vue_type_template_id_1d479d74___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MyThoughtComponent.vue?vue&type=template&id=1d479d74& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\MyThoughtComponent.vue?vue&type=template&id=1d479d74&");
+/* harmony import */ var _MyThoughtComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MyThoughtComponent.vue?vue&type=script&lang=js& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\MyThoughtComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\runtime\\componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MyThoughtComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MyThoughtComponent_vue_vue_type_template_id_1d479d74___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MyThoughtComponent_vue_vue_type_template_id_1d479d74___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/MyThoughtComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\MyThoughtComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************!*\
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/MyThoughtComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyThoughtComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MyThoughtComponent.vue?vue&type=script&lang=js& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\babel-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\MyThoughtComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyThoughtComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\MyThoughtComponent.vue?vue&type=template&id=1d479d74&":
+/*!******************************************************************************************************************************!*\
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/MyThoughtComponent.vue?vue&type=template&id=1d479d74& ***!
+  \******************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyThoughtComponent_vue_vue_type_template_id_1d479d74___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MyThoughtComponent.vue?vue&type=template&id=1d479d74& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\loaders\\templateLoader.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\MyThoughtComponent.vue?vue&type=template&id=1d479d74&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyThoughtComponent_vue_vue_type_template_id_1d479d74___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyThoughtComponent_vue_vue_type_template_id_1d479d74___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ThoughtComponent.vue":
+/*!*********************************************************************************************!*\
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/ThoughtComponent.vue ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ThoughtComponent_vue_vue_type_template_id_b30af6b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ThoughtComponent.vue?vue&type=template&id=b30af6b0& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ThoughtComponent.vue?vue&type=template&id=b30af6b0&");
+/* harmony import */ var _ThoughtComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ThoughtComponent.vue?vue&type=script&lang=js& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ThoughtComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\runtime\\componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ThoughtComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ThoughtComponent_vue_vue_type_template_id_b30af6b0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ThoughtComponent_vue_vue_type_template_id_b30af6b0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/ThoughtComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ThoughtComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************!*\
-  !*** C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/ThoughtComponent.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\babel-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ThoughtComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ThoughtComponent.vue?vue&type=script&lang=js& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\babel-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ThoughtComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ThoughtComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ExampleComponent.vue?vue&type=template&id=7a292e12&":
+/***/ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ThoughtComponent.vue?vue&type=template&id=b30af6b0&":
 /*!****************************************************************************************************************************!*\
-  !*** C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/ExampleComponent.vue?vue&type=template&id=7a292e12& ***!
+  !*** C:/sfdc-projects/laravel/vue-simple-crud/resources/js/components/ThoughtComponent.vue?vue&type=template&id=b30af6b0& ***!
   \****************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_7a292e12___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=7a292e12& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\loaders\\templateLoader.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ExampleComponent.vue?vue&type=template&id=7a292e12&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_7a292e12___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ThoughtComponent_vue_vue_type_template_id_b30af6b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ThoughtComponent.vue?vue&type=template&id=b30af6b0& */ "C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\loaders\\templateLoader.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\node_modules\\vue-loader\\lib\\index.js?!C:\\sfdc-projects\\laravel\\vue-simple-crud\\resources\\js\\components\\ThoughtComponent.vue?vue&type=template&id=b30af6b0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ThoughtComponent_vue_vue_type_template_id_b30af6b0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_7a292e12___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ThoughtComponent_vue_vue_type_template_id_b30af6b0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
