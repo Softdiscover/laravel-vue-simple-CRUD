@@ -1,61 +1,102 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Laravel CRUD
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Steps to create the CRUD with vue
 
-## About Laravel
+1.  `composer create-project --prefer-dist laravel/laravel test`
+2. then add `test` folder to virtualhost in order to run the application
+3. installing UI package: `composer require laravel/ui`
+3. then add auth module: `php artisan ui vue --auth`
+4. before running migrate, go to app/Providers/AppServiceProvider.php and modify:
+```
+<?php
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+namespace App\Providers;
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
 
-## Learning Laravel
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+        Schema::defaultStringLength(191);
+    }
+}
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```
+5. then run: `php artisan migrate`
+6. then install npm dependencies: `npm install`
+7. to compile assets run the command: `npm run dev`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## Gruntfile conventions and practices
+1. Require the shared task loader at the top of your `Gruntfile.js`, passing `grunt` variable to the require, like this:
+	`var wpmudev = require('./shared-tasks/loader')(grunt);`
+2. Automatic fileset types:
+	- Externals: if your project uses external libraries outside submodules (i.e. stuff that should be included in a release, but not e.g. processed via linters), add those paths in yourself. See smartcrawl project for an example of this. Note: git submodules will be added to the list automatically.
+	- Free (wordpress.org) project releases: WPMU DEV Dashboard will be automatically excluded from free project release packaging. To omit other paths, add them to the `free` files queue manually.
+	- Full (DEV proper) project releases: `readme.txt` and any screenshot images in the root project folder will be excluded from full project release packaging. To omit other paths, add them to the `full` files queue manually.
+	- Cleanup: the `dist` folder will be treated as an intermediate area and will be cleaned up before releasing, as well as any `.zip` files in the root directory. To include other paths in automated cleanup, add them to the `clean` queue manually.
+3. Shared tasks enforces a certain interface - namely, your `Gruntfile.js` has to expose a task named `release`. Running this task has to end up with newly created, self-sufficient, versioned distributable archive in the `builds` directory.
+4. Use the supplied `wpmudev_release` task in your `release` task body, and supply any release- and project- specific info in its configuration property. See smartcrawl and snapshot projects for an example of this. The `wpmudev_release` task will also automatically update your project's version numbers, check changelog, update translation catalogs and, if everything's up to spec, commit changes and tag the release.
+5. It is recommended to maintain a separate, simpler packaging task, to produce a simplified current work snapshot archive. See snapshot and smartcrawl projects for an example of this.
+6. You do not need to maintain a separate project `makepot` task - this comes with the library, and will be called automatically from `wpmudev_release` task.
+7. You can - but do not have to - maintain separate `phpcs` and `jshint` tasks, the library will try to use system linters if it can via the `wpmudev_lint` task. It will first try to use the default configuration, if it's present.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Work conventions and tools
 
-### Premium Partners
+The project comes with grunt tasks to facilitate adhering to conventions when working on bugs and features.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+To make use of them, you will need an ID for your task (`TASKID`). If you are working on an Asana task, your task ID will be the last numeric portion of the Asana task URL. For an example, for this task: https://app.asana.com/0/46496453944769/467725328362050/f, the `TASKID` would be `467725328362050`.
 
-## Contributing
+If you are *not* working on an Asana task, consider creating one :) Otherwise, use a quoted sentence that briefly, yet sufficiently explains what you're working on as your `TASKID`.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Examples
 
-## Code of Conduct
+Fixing a bug with Asana task assigned:
+	`grunt bugfix:467725328362050`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Adding a feature with Asana task assigned:
+	`grunt featureadd:467725328362050`
 
-## Security Vulnerabilities
+Fixing a bug with *no* Asana task assigned:
+	`grunt bugfix:"SEO Analysis"`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Adding a feature with *no* Asana task assigned:
+	`grunt featureadd:"Flying saucers"`
 
-## License
+#### What this does
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Runing this task will:
+
+1. ... create an appropriately named branch (`fix/<TASKID>` for `bugfix` task, `new/<TASKID>` for `featureadd` task)
+2. ... add a temporary changelog entry at the top of your `changelog.txt` with task info. This serves multiple purposes:
+	- It is easier for QA staff to run their tests with efficiency.
+	- When it is release time, it will be easier to compile the proper changelog entry with this info there.
+3. ... make an initial commit in your new branch and leave to do your work.
+
+These auto-created branches will not be pushed to BitBucket unless you do so yourself. If your work is going to take longer than just an hour or two, consider pushing it.
+
+#### Implementing fixes and features atop of a previous release
+
+The newly auto-created branch will be based off of your current branch and commit. If you want to base it off of a different source (e.g. you want to fix a bug in a released version but the main work already progressed on), you can include an optional second parameter to tasks. For an example, to start working on a fix for bug report 467725328362050 in v2.0.1 release, use this command: `grunt bugfix:467725328362050:2.0.1`
+
+### Once I'm done...
+
+When you're done working and the fix or feature is to be incorporated into the different branch, either merge it, or push your branch and submit a pull request.
