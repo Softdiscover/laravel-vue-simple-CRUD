@@ -42,15 +42,18 @@
                     description: this.description
                 };
 
-                axios.post('/thoughts', params).then( (response) => console.log(response) );
 
-                let thought={
-                    id:4,
-                    description: this.description,
-                    created_at: '11/22/3333'
-                };
-                this.$emit('new', thought);
-                this.description ='';
+     this.description ='';
+
+
+                axios.post('/thoughts', params).then( (response) => {
+                    const thought = response.data
+                    this.$emit('new', thought);
+                } );
+
+
+
+
 
             }
         }

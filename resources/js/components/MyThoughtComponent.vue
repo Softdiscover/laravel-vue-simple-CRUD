@@ -21,25 +21,16 @@
 
         data(){
             return {
-                thoughts: [
-                {
-                    'id':1,
-                    'description':'lorem ipsum  asdlfj alsdkfj alsdjf laksjdf lasjd flkajsd fljkas dlfj',
-                    'created_at':'17/07/2018'
-                },
-                {
-                    'id':2,
-                    'description':'lorem ipsum2  asdlfj alsdkfj alsdjf laksjdf lasjd flkajsd fljkas dlfj',
-                    'created_at':'17/07/2020'
-                }
-
-                ]
+                thoughts: []
             }
         },
 
         mounted() {
             console.log('Component mounted.')
-
+                axios.get('/thoughts').then( (response) =>{
+                    this.thoughts = response.data;
+                }
+            );
         },
         methods: {
             addThought(thought){

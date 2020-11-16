@@ -1,7 +1,7 @@
 <template>
 
      <div class="card mt-2">
-                <div class="card-header">'Publicado en {{ thought.created_at}} </div>
+                <div class="card-header">'Publicado en {{ thought.created_at}} - update at : {{ thought.updated_at}}</div>
 
                 <div class="card-body">
 
@@ -45,14 +45,33 @@
         methods:{
             onClickDelete(){
                 this.$emit('delete');
+                axios.delete(`/thoughts/${this.thought.id}`).then(
+               () =>{
+                     this.$emit('delete');
+                }
+
+                );
+
             },
             onClickEdit(){
                 this.editMode = true;
                 this.$emit('edit');
             },
             onClickUpdate(){
-                this.editMode = false;
+
+const params ={
+    description: this.thought.description
+};
+
+            axios.put(`/thoughts/${this.thought.id}`, params).then(
+                (response)=>{
+                   this.editMode = false;
+                   const thought = response.data;
                 this.$emit('update',this.thought);
+                }
+            );
+
+
             }
         }
     }

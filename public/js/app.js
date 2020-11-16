@@ -1958,20 +1958,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     newThought: function newThought() {
+      var _this = this;
+
       //alert(this.description);
       var params = {
         description: this.description
       };
-      axios.post('/thoughts', params).then(function (response) {
-        return console.log(response);
-      });
-      var thought = {
-        id: 4,
-        description: this.description,
-        created_at: '11/22/3333'
-      };
-      this.$emit('new', thought);
       this.description = '';
+      axios.post('/thoughts', params).then(function (response) {
+        var thought = response.data;
+
+        _this.$emit('new', thought);
+      });
     }
   }
 });
@@ -2008,19 +2006,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      thoughts: [{
-        'id': 1,
-        'description': 'lorem ipsum  asdlfj alsdkfj alsdjf laksjdf lasjd flkajsd fljkas dlfj',
-        'created_at': '17/07/2018'
-      }, {
-        'id': 2,
-        'description': 'lorem ipsum2  asdlfj alsdkfj alsdjf laksjdf lasjd flkajsd fljkas dlfj',
-        'created_at': '17/07/2020'
-      }]
+      thoughts: []
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     console.log('Component mounted.');
+    axios.get('/thoughts').then(function (response) {
+      _this.thoughts = response.data;
+    });
   },
   methods: {
     addThought: function addThought(thought) {
@@ -2091,15 +2086,29 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onClickDelete: function onClickDelete() {
+      var _this = this;
+
       this.$emit('delete');
+      axios["delete"]("/thoughts/".concat(this.thought.id)).then(function () {
+        _this.$emit('delete');
+      });
     },
     onClickEdit: function onClickEdit() {
       this.editMode = true;
       this.$emit('edit');
     },
     onClickUpdate: function onClickUpdate() {
-      this.editMode = false;
-      this.$emit('update', this.thought);
+      var _this2 = this;
+
+      var params = {
+        description: this.thought.description
+      };
+      axios.put("/thoughts/".concat(this.thought.id), params).then(function (response) {
+        _this2.editMode = false;
+        var thought = response.data;
+
+        _this2.$emit('update', _this2.thought);
+      });
     }
   }
 });
@@ -38453,7 +38462,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card mt-2" }, [
     _c("div", { staticClass: "card-header" }, [
-      _vm._v("'Publicado en " + _vm._s(_vm.thought.created_at) + " ")
+      _vm._v(
+        "'Publicado en " +
+          _vm._s(_vm.thought.created_at) +
+          " - update at : " +
+          _vm._s(_vm.thought.updated_at)
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
